@@ -48,9 +48,15 @@ lean-mathlib-docs-mcp/
 │   └── mcp.json
 ```
 
+## Development
+
+- test the mcp server
+- add check the original code
+
 ## License
 
 This project is licensed under the GPLv3 License. See the `LICENSE` file for details.
+Prohibits all commercial use.
 
 ## Acknowledgments
 
