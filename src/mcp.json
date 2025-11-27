@@ -1,0 +1,15 @@
+// move this file into ./vscode folder as mcp.json
+// or add the content into your existing mcp.json file
+{
+    "servers": {
+        "lean_docs_mcp_server": {
+            "command": "python",
+            // "python" if you have global python, else provide full path
+            // such as "C:/Users/YourName/.conda/envs/your_env/python.exe" on Windows
+            // or "/home/your_name/miniconda3/envs/your_env/bin/python" on Linux/Mac
+            "args": [
+                "./.vscode/lean_docs_mcp_server.py" // or provide full path to mcp_server.py
+            ]
+        }
+    }
+}
