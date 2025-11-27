@@ -1,0 +1,10 @@
+name: lean-mathlib-docs-env
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python>=3.11
+  - pip
+  - pip:
+      - requests
+      - mcp-server
