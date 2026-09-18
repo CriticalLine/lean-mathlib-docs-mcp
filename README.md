@@ -25,7 +25,7 @@ for LLM agents".
 
 ## Architecture
 
-```
+```txt
 docgen master index declaration-data.bmp  ──►  MasterIndexSource.load()
                                                 │  (neutral SourceBundle)
                                                 ▼
@@ -128,7 +128,7 @@ All knobs are environment-overridable (prefix `LEAN_MATHLIB_`), so the server
 deploys read-only with zero code changes.
 
 | Variable | Default | Description |
-|----------|---------|-------------|
+| ---------- | --------- | ------------- |
 | `LEAN_MATHLIB_DATA_SOURCE` | `auto` | `auto` / `sample` / `remote` |
 | `LEAN_MATHLIB_DATA_URL` | docgen official URL | Production master index URL |
 | `LEAN_MATHLIB_CACHE_DIR` | `data/cache` | Index cache directory |
@@ -153,7 +153,7 @@ deploys read-only with zero code changes.
 ### 3.1 Exact-identity search
 
 | Tool | Key params | Description |
-|------|-----------|-------------|
+| ------ | ----------- | ------------- |
 | `search_declaration` | `query`, `entity_types?`, `domain?`, `use_tags?` | Exact qualified-name resolution, else ranked by name precision + domain closeness + usage. Empty result carries `negative_feedback`. |
 | `get_entity` | `full_name`, `granularity=complete` | One entity by exact name or stable id `decl:*`. On name collision returns `ambiguous_match` with disambiguation candidates. |
 | `search_by_notation` | `symbol`, `latex?` | Resolve a notation by Unicode or LaTeX (e.g. `≤` / `\le` / `\sum`): precedence, associativity, bound entity, conflicting forms. |
@@ -161,7 +161,7 @@ deploys read-only with zero code changes.
 ### 3.2 Semantic-feature search
 
 | Tool | Key params | Description |
-|------|-----------|-------------|
+| ------ | ----------- | ------------- |
 | `search_by_signature` ⚡ | `arity?`, `return_type?`, `param_types?` (`_`/`*` wildcards) | Type-signature structural match, ranked exact-unify > unifiable > structural. |
 | `search_by_conclusion` ⚡ | `pattern`, `symmetric?`, `monotonic?` | Match by conclusion structure (variable names ignored, operator tokens matched), e.g. `x + y = y + x`. |
 | `search_by_domain_use` | `domain?`, `subdomain?`, `use_tags?`, `entity_types?` | Domain + subdomain + intent tags + entity type; core/high-frequency first. **Always available.** |
@@ -171,7 +171,7 @@ deploys read-only with zero code changes.
 ### 3.3 Association & context search
 
 | Tool | Key params | Description |
-|------|-----------|-------------|
+| ------ | ----------- | ------------- |
 | `expand_dependencies` | `full_name`, `depth=2`, `exclude_stdlib?`, `only_mathlib=true`, `as_tree=true` | Recursive dependency expansion (tree/flat); enriched deps preferred, else module import-graph fallback. |
 | `find_usages` | `full_name`, `direct_only?`, `transitive=true` | Impact analysis: direct/indirect dependents + modules importing its module. |
 | `recommend_related` | `full_name`, `limit=15` | "What to read next": same-module core pairings, equivalents/duals, generalizations/specializations, other instances of its typeclass. |
@@ -180,7 +180,7 @@ deploys read-only with zero code changes.
 ### 3.4 Service & batch
 
 | Tool | Key params | Description |
-|------|-----------|-------------|
+| ------ | ----------- | ------------- |
 | `search_modules` | `query`, `scope_modules?`, `max_results=50` | Find modules/namespaces by substring. |
 | `index_info` | — | Index health: declaration/module counts, enrichment status, data source. |
 | `batch_query` | `queries: [{tool, args}, ...]` | Run multiple queries in one round-trip; per-item errors isolated. |
@@ -227,6 +227,7 @@ deploys read-only with zero code changes.
 `cache_key`) · `is_core` · `usage_frequency` · `enrichment_source`.
 
 `granularity` projection:
+
 - **terse**: `id` / `full_name` / `entity_type` / `module` / `domain`
 - **summary**: + `short_name` / `doc_link` / `use_tags` / `is_core` / `usage_frequency`
 - **complete**: + `type_signature` / `statement` / `subdomain` / `relations` (light)
@@ -246,7 +247,7 @@ deploys read-only with zero code changes.
 ```
 
 | Error code | Trigger | Caller action |
-|------------|---------|---------------|
+| ------------ | --------- | --------------- |
 | `unknown_tool` | Unknown tool name (`fixable:false`) | Check tool name |
 | `invalid_argument` | Missing required arg | Add `full_name` / `query` |
 | `ambiguous_match` | Name collision | Disambiguate via `namespace`/module (see `disambiguation`) |
