@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lean-mathlib-mcp"
+version = "2.0.0"
+description = "Machine-first MCP server for structured, low-ambiguity search over the Lean Mathlib 4 knowledge base (definitions, theorems, notations, modules, instances, axioms)."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "lean-mathlib-mcp contributors" }]
+keywords = ["lean", "mathlib", "mcp", "model-context-protocol", "ai", "search", "theorem"]
+dependencies = [
+    "mcp>=2.1.0",
+    "pydantic>=2.6.0",
+    "pydantic-settings>=2.2.0",
+    "requests>=2.31.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-asyncio>=0.23"]
+
+[project.scripts]
+lean-mathlib-mcp = "lean_mathlib_mcp.server:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

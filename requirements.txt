@@ -1,0 +1,9 @@
+# Core runtime dependencies (pinned to the versions validated in this project)
+mcp>=2.1.0
+pydantic>=2.6.0
+pydantic-settings>=2.2.0
+requests>=2.31.0
+
+# Dev / test only
+pytest>=8.0
+pytest-asyncio>=0.23

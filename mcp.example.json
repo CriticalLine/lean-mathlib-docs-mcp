@@ -1,0 +1,11 @@
+{
+  "servers": {
+    "lean_mathlib_mcp": {
+      "command": "python",
+      "args": ["run_server.py"],
+      "env": {
+        "LEAN_MATHLIB_DATA_SOURCE": "auto"
+      }
+    }
+  }
+}
